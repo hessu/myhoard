@@ -38,7 +38,7 @@ DEFAULT_XTRABACKUP_SETTINGS = {
     "encrypt_threads": 1,
 }
 
-GtidRangeTuple = tuple[int, int, str, int, int]
+GtidRangeTuple = Tuple[int, int, str, int, int]
 
 
 class GtidRangeDict(TypedDict):

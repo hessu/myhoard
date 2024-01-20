@@ -32,7 +32,7 @@ from contextlib import suppress
 from pymysql import OperationalError
 from rohmu import errors as rohmu_errors, get_transfer
 from rohmu.object_storage.base import BaseTransfer
-from typing import Any, Dict, Iterable, List, Optional, Tuple, TypedDict
+from typing import Any, Dict, Iterable, List, Optional, Tuple, TypedDict, Type
 
 import contextlib
 import enum
@@ -169,7 +169,7 @@ class RestoreCoordinator(threading.Thread):
         rsa_private_key_pem,
         site: str,
         state_file: str,
-        state_manager_class: type[StateManager["RestoreCoordinator.State"]] = StateManager,
+        state_manager_class: Type[StateManager["RestoreCoordinator.State"]] = StateManager,
         stats: StatsClient,
         stream_id: str,
         target_time=None,
@@ -1346,7 +1346,7 @@ class RestoreCoordinator(threading.Thread):
         with self._mysql_cursor() as cursor:
             restart_unexpected_dead_sql_thread(cursor, slave_status, self.stats, self.log)
 
-    def _check_sql_slave_status(self) -> tuple[bool, int]:
+    def _check_sql_slave_status(self) -> Tuple[bool, int]:
         expected_range = self.state["current_executed_gtid_target"]
         expected_index = self.state["current_relay_log_target"]
 
