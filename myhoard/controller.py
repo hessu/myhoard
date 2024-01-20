@@ -858,7 +858,7 @@ class Controller(threading.Thread):
             mysql_relay_log_index_file=self.mysql_relay_log_index_file,
             mysql_relay_log_prefix=self.mysql_relay_log_prefix,
             pending_binlogs_state_file=options["pending_binlogs_state_file"],
-            rebuild_tables=options["rebuild_tables"],
+            rebuild_tables=options.get("rebuild_tables", False),
             restart_mysqld_callback=self.restart_mysqld_callback,
             rsa_private_key_pem=backup_site["encryption_keys"]["private"],
             site=options["site"],
