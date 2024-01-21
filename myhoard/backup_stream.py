@@ -254,7 +254,8 @@ class BackupStream(threading.Thread):
         self.stats = stats
         self.temp_dir = temp_dir
         self.wakeup_event = threading.Event()
-        self.xtrabackup_settings = DEFAULT_XTRABACKUP_SETTINGS | (xtrabackup_settings or {})
+        settings = xtrabackup_settings or {}
+        self.xtrabackup_settings = {**DEFAULT_XTRABACKUP_SETTINGS, **settings}
 
     @contextlib.contextmanager
     def running(self):
