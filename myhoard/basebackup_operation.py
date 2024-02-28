@@ -125,7 +125,7 @@ class BasebackupOperation:
                     # defaults file must be given with --defaults-file=foo syntax, space here does not work
                     f"--defaults-file={mysql_config_file.name}",
                     "--backup",
-                    "--compress",
+                    "--compress=zstd",
                     f"--compress-threads={self.compress_threads}",
                     "--encrypt",
                     self.encryption_algorithm,
